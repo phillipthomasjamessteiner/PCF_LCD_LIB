@@ -67,6 +67,38 @@ void FCF_LCD::fSet(uint8_t dLines, uint8_t fType, uint8_t disState, uint8_t curS
 
 };
 
+void PCF_LCD::dShift(uint8_t cMv, uint8_t dSh) {
+    
+    switch(cMv) {
+        case 0:
+            switch(dSh) {
+                case 0:
+                    parWrite(B00010100);
+                    parWrite(B00000100);
+                    break;
+                case 1:
+                    parWrite(B00010100);
+                    parWrite(B01000100);
+                    break;
+            }
+            break;
+        case 1:
+            switch(dSh) {
+                case 0:
+                    parWrite(B00010100);
+                    parWrite(B10000100);
+                    break;
+                case 1:
+                    parWrite(B00010100);
+                    parWrite(B11000100);
+                    break;
+            }
+            break;
+    }
+
+    delayMicroseconds(40);
+
+}
 
 void PCF_LCD::writeDDRAM(uint8_t b) {
     delay(1);
@@ -90,3 +122,4 @@ void PCF_LCD::parWrite(uint8_t b) {
     Wire.endTransmission(true);
 
 };
+

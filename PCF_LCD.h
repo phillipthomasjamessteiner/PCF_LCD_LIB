@@ -3,10 +3,17 @@
 #ifndef PCF_LCD_h
 #define PCF_LCD_h
 
-#define enOn    B00000100
-#define enOff   B00000000
-#define BitMaskFst B11110000
-#define BitMaskLst B00001111
+#define enOn        B00000100
+#define enOff       B00000000
+#define BitMaskFst  B11110000
+#define BitMaskLst  B00001111
+
+#define LEFT        0
+#define RIGHT       1
+#define OFF         0
+#define ON          1
+#define DECREASE    0
+#define INCREASE    1
 
 
 class PCF_LCD {
@@ -19,9 +26,7 @@ class PCF_LCD {
 
         void fSet(uint8_t fontType, uint8_t inc, uint8_t shift);
 
-        void cShift(uint8_t dir);
-
-        void dShift(uint8_t dir);
+        void dShift(uint8_t cMv, uint8_t dSh);
 
         void setCursor(uint8_t line, uint8_t character);
 
@@ -55,8 +60,7 @@ class PCF_LCD {
 
         void parWrite(uint8_t b);
 
-        
-
 };
 
 #endif
+
